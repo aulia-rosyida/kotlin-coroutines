@@ -39,8 +39,6 @@ data class Title constructor(val title: String, @PrimaryKey val id: Int = 0)
  */
 @Dao
 interface TitleDao {
-    // add the suspend modifier to the existing insertTitle
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTitle(title: Title)
 
