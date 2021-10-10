@@ -36,6 +36,9 @@ class TitleRepository(val network: MainNetwork, val titleDao: TitleDao) {
     suspend fun refreshTitle() {
         // TODO: Refresh from network and write to database
         // interact with *blocking* network and IO calls from a coroutine
+
+        /** Because this withContext block only calls blocking calls it will not be cancelled
+         * until it returns from withContext.*/
         withContext(Dispatchers.IO) {
             val result = try {
                 // Make network request using a blocking call
